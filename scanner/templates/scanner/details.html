@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #172554;
+        }
+
+        .detail {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        .risk {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .reasons li {
+            margin: 10px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 18px;
+            background: #172554;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Scan Details</h2>
+
+    <div class="detail">
+        <strong>URL:</strong>
+        <p>{{ scan.url }}</p>
+    </div>
+
+    <div class="detail">
+        <strong>Risk Score:</strong>
+        <p>{{ scan.risk_score }}/100</p>
+
+        <strong>Risk Level:</strong>
+        <p class="risk">{{ scan.risk_level }}</p>
+    </div>
+
+    <div class="detail">
+        <strong>Detected Reasons:</strong>
+
+        <ul class="reasons">
+            {% for reason in scan.reasons %}
+                <li>{{ reason }}</li>
+            {% empty %}
+                <li>No suspicious indicators detected.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="detail">
+        <strong>Scanned At:</strong>
+        <p>{{ scan.scanned_at|date:"d-m-Y h:i A" }}</p>
+    </div>
+
+    <a href="{% url 'history' %}">Back to History</a>
+</div>
+
+</body>
+</html>

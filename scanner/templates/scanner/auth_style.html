@@ -1,0 +1,187 @@
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #eaf2ff, #f7f9fc);
+        color: #1e293b;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 430px;
+        background: white;
+        padding: 38px;
+        border-radius: 18px;
+        box-shadow: 0 15px 45px rgba(15, 40, 80, 0.12);
+    }
+
+    .logo {
+        width: 55px;
+        height: 55px;
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e8f0ff;
+        border-radius: 15px;
+        font-size: 27px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #12345a;
+        margin-bottom: 8px;
+        font-size: 27px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #64748b;
+        margin-bottom: 28px;
+        font-size: 14px;
+    }
+
+    form p {
+        margin-bottom: 18px;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #d6deea;
+        border-radius: 9px;
+        font-size: 15px;
+        outline: none;
+        background: #fbfdff;
+    }
+
+    input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .password-wrap {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .password-wrap input {
+        padding-right: 48px;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 19px;
+        padding: 5px;
+    }
+
+    button.submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: #12345a;
+        color: white;
+        border: none;
+        border-radius: 9px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+
+    button.submit-btn:hover {
+        background: #1d4e89;
+    }
+
+    .auth-footer {
+        text-align: center;
+        margin-top: 24px;
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    a {
+        color: #2563eb;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    ul.errorlist {
+        color: #dc2626;
+        font-size: 13px;
+        padding-left: 20px;
+    }
+
+    .helptext {
+        display: block;
+        color: #64748b;
+        font-size: 12px;
+        margin-top: 6px;
+    }
+
+    @media (max-width: 480px) {
+        .auth-card {
+            padding: 25px 20px;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const passwordInputs = document.querySelectorAll(
+        'input[type="password"]'
+    );
+
+    passwordInputs.forEach(function (input) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "password-wrap";
+
+        input.parentNode.insertBefore(wrapper, input);
+        wrapper.appendChild(input);
+
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "toggle-password";
+        toggle.textContent = "👁";
+        toggle.setAttribute("aria-label", "Show password");
+
+        toggle.addEventListener("click", function () {
+            const isHidden = input.type === "password";
+
+            input.type = isHidden ? "text" : "password";
+            toggle.textContent = isHidden ? "🙈" : "👁";
+            toggle.setAttribute(
+                "aria-label",
+                isHidden ? "Hide password" : "Show password"
+            );
+        });
+
+        wrapper.appendChild(toggle);
+    });
+});
+</script>

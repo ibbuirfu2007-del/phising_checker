@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Phishing URL Checker</title>
+
+    {% include "scanner/auth_style.html" %}
+</head>
+
+<body>
+    <div class="auth-card">
+
+        <div class="logo">🛡️</div>
+
+        <h1>Create Account</h1>
+
+        <p class="subtitle">
+            Join us to check suspicious URLs
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="submit-btn">
+                Create Account
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+
+    </div>
+</body>
+</html>
